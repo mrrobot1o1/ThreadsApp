@@ -8,6 +8,19 @@ ThreadsApp is a simple web app, which has some simple features like creating pos
 
 This being the first release, we tried to add some basic functionaliites and related vulnerabilities. Future releases will have more interesting vulnerabilities and functionalities. 
 
+## Docker deployment 
+Use the below instructions for docker deployment of Threads App:
+
+```
+# Clone the repository
+git clone https://github.com/enciphers-team/ThreadsApp.git
+
+# cd into ThreadsApp folder
+cd  ThreadsApp 
+
+# Docker deploy  
+docker-compose up -d 
+```
 
 
 ## Prerequisite for setting up the Lab
