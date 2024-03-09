@@ -1,31 +1,31 @@
 version: '3.8'
 services:
-  mongodb:
+  mongo:
     image: mongo:6.0
     volumes:
       - mongodb_data:/data/db
     networks:
-      - app-network
+      - threadsapp-network
+    container_name: mongo
 
   threadsapp:
-    build: .
-    image: threadsapp:latest
+    image: enciphers/threadsapp:v1.0
     ports:
       - "3000:3000"
-      - "4000:4000" # Backend port 
+      - "4000:4000" # Backend port
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/vulnerable_dev_database
+      - MONGODB_URI=mongodb://mongo:27017/vulnerable_dev_database
       - RUNNING_IN_DOCKER=true
     depends_on:
-      - mongodb
+      - mongo
     networks:
-      - app-network
+      - threadsapp-network
+    container_name: threadsapp
     command: sh -c "npm run add_users && npm start"
 
 volumes:
   mongodb_data:
 
 networks:
-  app-network:
+  threadsapp-network:
     driver: bridge
-
